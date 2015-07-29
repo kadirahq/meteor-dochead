@@ -28,9 +28,7 @@ Package.onTest(function(api) {
 
 
 function configure(api) {
-  api.versionsFrom('1.0');
-
-  api.use('jsx');
+  api.use('jsx@0.1.5');
   api.use('kadira:flow-router-ssr@3.0.0', ['client', 'server'], {weak: true});
   api.use('cosmos:browserify@0.5.0', 'client');
 
