@@ -29,6 +29,17 @@ Tinytest.add('Client - addMeta twice with the same name', function(test) {
   test.equal(metaDom.attr('name'), metaInfo.name);
   test.equal(metaDom.attr('content'), metaInfo.content);
 
-  // has only one
+  // Only have the last one, even we add the same meta twice
+  // DocHead differenciate meta by name
+  // If not provided, it simply ignore them
   test.equal(metaDom.get().length, 1);
+});
+
+Tinytest.addAsync('Client - loadScript', function(test, done) {
+  var scriptUrl = '/packages/local-test_kadira_dochead/test/fakescript.js';
+  test.equal(window.fakeScriptLoaded, undefined);
+  DocHead.loadScript(scriptUrl, function() {
+    test.equal(window.fakeScriptLoaded, true);
+    done();
+  });
 });

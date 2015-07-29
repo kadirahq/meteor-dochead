@@ -39,7 +39,7 @@ DocHead = {
   },
   loadScript(url, options, callback) {
     if(Meteor.isClient) {
-      Vendor.LoadScript(url, options, callback)
+      LoadScript(url, options, callback)
     }
   },
   _addToHead(html) {
