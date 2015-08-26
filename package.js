@@ -34,4 +34,5 @@ function configure(api) {
 
   api.addFiles('package.browserify.js', 'client');
   api.addFiles('lib/both.jsx', ['client', 'server']);
+  api.addFiles('lib/flow_router.jsx', ['client']);
 }

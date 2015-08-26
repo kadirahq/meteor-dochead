@@ -45,6 +45,15 @@ var metaInfo = {name: "description", content: "FlowRouter SSR is Awesome"};
 DocHead.addMeta(metaInfo);
 ~~~
 
+#### DocHead.addLink(metaInfo)
+
+Add a Link tag.
+
+~~~js
+var linkInfo = {rel: "icon", type: "image/png", href: "/icon.png"};
+DocHead.addLink(linkInfo);
+~~~
+
 #### DocHead.loadScript(scriptName, options, callback) - [client only]
 
 Load an script dynamically from the client side of your app. Both `options` and `callback` are optional.
@@ -59,4 +68,3 @@ DocHead.loadScript(gaScript, function() {
     ga('send', 'pageview');
 });
 ~~~
-

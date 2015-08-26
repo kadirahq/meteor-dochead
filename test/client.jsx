@@ -18,9 +18,11 @@ Tinytest.add('Client - addMeta', function(test) {
   test.equal(metaDom.attr('content'), metaInfo.content);
 });
 
-Tinytest.add('Client - addMeta twice with the same name', function(test) {
+Tinytest.add('Client - remove exising meta tags', function(test) {
   var metaInfo = {name: "description", content: "awesome content"};
   DocHead.addMeta(metaInfo);
+
+  DocHead.removeDocHeadAddedTags();
 
   metaInfo.content = "nice one";
   DocHead.addMeta(metaInfo);

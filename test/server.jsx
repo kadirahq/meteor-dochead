@@ -13,7 +13,7 @@ Tinytest.addAsync('Server - setTitle and getTitle', function(test, done) {
 Tinytest.addAsync('Server - addMeta', function(test, done) {
   var metaInfo = {name: "description", content: "hello content"};
   var handle = OnSsrContext(function(html) {
-    var metaTag = `<meta name="${metaInfo.name}" content="${metaInfo.content}" />`;
+    var metaTag = `<meta name="${metaInfo.name}" content="${metaInfo.content}" dochead="1"/>`;
     test.equal(html, metaTag);
     handle.stop();
     done();

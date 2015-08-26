@@ -15,20 +15,10 @@ DocHead = {
     }
   },
   addMeta(info) {
-    if(Meteor.isClient) {
-      if(info.name) {
-        var meta = $(`meta[name="${info.name}"]`);
-        if(meta) {
-          meta.remove();
-        }
-      }
-
-      var meta = this._buildMetaTag(info);
-      $('head').append(meta);
-    } else {
-      var meta = this._buildMetaTag(info);
-      this._addToHead(meta);
-    }
+    this._addTag(info, 'meta');
+  },
+  addLink(info) {
+    this._addTag(info, 'link');
   },
   getTitle() {
     if(Meteor.isClient) {
@@ -42,6 +32,15 @@ DocHead = {
       LoadScript(url, options, callback)
     }
   },
+  _addTag(info, tag) {
+    if(Meteor.isClient) {
+      var meta = this._buildTag(info, tag);
+      $('head').append(meta);
+    } else {
+      var meta = this._buildTag(info, tag);
+      this._addToHead(meta);
+    }
+  },
   _addToHead(html) {
     // only work there is kadira:flow-router-ssr
     if(!FlowRouter) {
@@ -53,12 +52,18 @@ DocHead = {
       ssrContext.addToHead(html);
     }
   },
-  _buildMetaTag(metaInfo) {
+  _buildTag(metaInfo, type) {
     var props = "";
     for(var key in metaInfo) {
       props += `${key}="${metaInfo[key]}" `;
     }
-    var meta = `<meta ${props}/>`;
+    props += 'dochead="1"';
+    var meta = `<${type} ${props}/>`;
     return meta;
+  },
+  removeDocHeadAddedTags() {
+    if(Meteor.isClient) {
+      $('[dochead="1"]', document.head).remove();
+    }
   }
 };
