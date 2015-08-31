@@ -18,7 +18,7 @@ In the Client Side, you can use `DocHead` anywhere in your app. But in the serve
 
 ## API
 
-#### DocHead.setTile(titleName)
+#### DocHead.setTitle(titleName)
 
 Set title to the page.
 
