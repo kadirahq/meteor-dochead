@@ -1,0 +1,1 @@
+npmLoadScript = require('load-script');
