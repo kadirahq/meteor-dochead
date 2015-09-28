@@ -1,6 +1,6 @@
 # DocHead for Meteor
 
-DocHead is an isomorphic way to manipulate `document.head` for Meteor apps. 
+DocHead is an isomorphic way to manipulate `document.head` for Meteor apps.
 
 With DocHead, you can easily set title and meta tags both in client and server using a single API. In the server side it'll use [FlowRouter SSR](https://github.com/kadirahq/flow-router/tree/ssr).
 
@@ -54,6 +54,15 @@ var linkInfo = {rel: "icon", type: "image/png", href: "/icon.png"};
 DocHead.addLink(linkInfo);
 ~~~
 
+### DocHead.addLdJsonScript(jsonObj)
+
+Add a Script tag with type of `application/ld+json`.
+
+~~~js
+var richSnippet = { '@context': 'http://schema.org', '@type': 'Organization', url: 'http://www.example.com', logo: 'http://www.example.com/images/logo.png' };
+DocHead.addLdJsonScript(richSnippet);
+~~~
+
 #### DocHead.loadScript(scriptName, options, callback) - [client only]
 
 Load an script dynamically from the client side of your app. Both `options` and `callback` are optional.
@@ -68,3 +77,8 @@ DocHead.loadScript(gaScript, function() {
     ga('send', 'pageview');
 });
 ~~~
+
+## Testing the package
+```sh
+meteor test-packages ./ --port 3010
+```
