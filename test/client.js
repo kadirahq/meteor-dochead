@@ -1,25 +1,38 @@
 Tinytest.add('Client - setTitle', function(test) {
-  var id = Random.id();
+  const id = Random.id();
   DocHead.setTitle(id);
   test.equal(document.title, id);
 });
 
 Tinytest.add('Client - getTitle', function(test) {
-  var id = Random.id();
+  const id = Random.id();
   document.title = id;
   test.equal(DocHead.getTitle(), id);
 });
 
 Tinytest.add('Client - addMeta', function(test) {
-  var metaInfo = {name: "description", content: "awesome content"};
+  const metaInfo = {name: "description", content: "awesome content"};
   DocHead.addMeta(metaInfo);
-  var metaDom = $('meta[name=description]');
+  const metaDom = $('meta[name=description]');
   test.equal(metaDom.attr('name'), metaInfo.name);
   test.equal(metaDom.attr('content'), metaInfo.content);
 });
 
+Tinytest.add('Client - addLdJsonScript', function(test, done) {
+  const snippet = {
+    '@context': 'http://schema.org',
+    '@type': 'Organization',
+    url: 'http://www.example.com',
+    logo: 'http://www.example.com/images/logo.png'
+  };
+  DocHead.addLdJsonScript(snippet);
+  const tag = $('script[dochead="1"]');
+  const obj = JSON.parse(tag.html());
+  test.equal(obj, snippet);
+});
+
 Tinytest.add('Client - remove exising meta tags', function(test) {
-  var metaInfo = {name: "description", content: "awesome content"};
+  const metaInfo = {name: "description", content: "awesome content"};
   DocHead.addMeta(metaInfo);
 
   DocHead.removeDocHeadAddedTags();
@@ -27,7 +40,7 @@ Tinytest.add('Client - remove exising meta tags', function(test) {
   metaInfo.content = "nice one";
   DocHead.addMeta(metaInfo);
 
-  var metaDom = $('meta[name=description]');
+  const metaDom = $('meta[name=description]');
   test.equal(metaDom.attr('name'), metaInfo.name);
   test.equal(metaDom.attr('content'), metaInfo.content);
 
@@ -38,7 +51,7 @@ Tinytest.add('Client - remove exising meta tags', function(test) {
 });
 
 Tinytest.addAsync('Client - loadScript', function(test, done) {
-  var scriptUrl = '/packages/local-test_kadira_dochead/test/fakescript.js';
+  const scriptUrl = '/packages/local-test_kadira_dochead/test/fakescript.js';
   test.equal(window.fakeScriptLoaded, undefined);
   DocHead.loadScript(scriptUrl, function() {
     test.equal(window.fakeScriptLoaded, true);

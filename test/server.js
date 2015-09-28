@@ -1,7 +1,17 @@
+let onSsrContext = function(fn) {
+  SsrContext.addToHead = fn;
+  let stop = function() {
+    SsrContext.addToHead = null;
+  };
+  return {
+    stop: stop
+  };
+};
+
 Tinytest.addAsync('Server - setTitle and getTitle', function(test, done) {
-  var id = Random.id();
-  var handle = OnSsrContext(function(html) {
-    var title = `<title>${id}</title>`
+  const id = Random.id();
+  let handle = onSsrContext(function(html) {
+    const title = `<title>${id}</title>`;
     test.equal(html, title);
     test.equal(DocHead.getTitle(), id);
     handle.stop();
@@ -11,9 +21,9 @@ Tinytest.addAsync('Server - setTitle and getTitle', function(test, done) {
 });
 
 Tinytest.addAsync('Server - addMeta', function(test, done) {
-  var metaInfo = {name: "description", content: "hello content"};
-  var handle = OnSsrContext(function(html) {
-    var metaTag = `<meta name="${metaInfo.name}" content="${metaInfo.content}" dochead="1"/>`;
+  const metaInfo = {name: "description", content: "hello content"};
+  let handle = onSsrContext(function(html) {
+    const metaTag = `<meta name="${metaInfo.name}" content="${metaInfo.content}" dochead="1"/>`;
     test.equal(html, metaTag);
     handle.stop();
     done();
@@ -21,14 +31,24 @@ Tinytest.addAsync('Server - addMeta', function(test, done) {
   DocHead.addMeta(metaInfo);
 });
 
-
-function OnSsrContext(fn) {
-  SsrContext.addToHead = fn;
-  function stop() {
-    SsrContext.addToHead = null;
-  }
-
-  return {
-    stop: stop
+Tinytest.addAsync('Server - addLdJsonScript', function(test, done) {
+  const snippet = {
+    '@context': 'http://schema.org',
+    '@type': 'Organization',
+    url: 'http://www.example.com',
+    logo: 'http://www.example.com/images/logo.png'
   };
-}
+  let handle = onSsrContext(function(html) {
+    const scriptTag = '<script type="application/ld+json" dochead="1">' +
+      '{' +
+        '"@context":"http://schema.org",' +
+        '"@type":"Organization",' +
+        '"url":"http://www.example.com",' +
+        '"logo":"http://www.example.com/images/logo.png"}' +
+    '</script>';
+    test.equal(html, scriptTag);
+    handle.stop();
+    done();
+  });
+  DocHead.addLdJsonScript(snippet);
+});
