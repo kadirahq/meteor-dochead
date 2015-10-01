@@ -1,5 +1,8 @@
 # Change Log
 
+### v2.2.1
+* Update browserify to 0.7.2
+
 ### v2.2.0
 
 * Add support for [JSON + LD](https://github.com/kadirahq/meteor-dochead#docheadaddldjsonscriptjsonobj)

@@ -1,7 +1,7 @@
 Package.describe({
   name: 'kadira:dochead',
   summary: 'Isomorphic way to manipulate document.head for Meteor apps',
-  version: '1.2.0',
+  version: '1.2.1',
   git: 'https://github.com/kadirahq/meteor-dochead.git'
 });
 
@@ -13,7 +13,7 @@ var configure = function(api) {
   api.versionsFrom('1.2');
   api.use(['jquery', 'es5-shim', 'ecmascript']);
   api.use('kadira:flow-router-ssr@3.3.0', ['client', 'server'], {weak: true});
-  api.use('cosmos:browserify@0.7.0', 'client');
+  api.use('cosmos:browserify@0.7.2', 'client');
 
   api.addFiles('package.browserify.js', 'client');
   api.addFiles('lib/both.js', ['client', 'server']);
