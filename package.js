@@ -1,7 +1,7 @@
 Package.describe({
   name: 'kadira:dochead',
   summary: 'Isomorphic way to manipulate document.head for Meteor apps',
-  version: '1.2.1',
+  version: '1.2.2',
   git: 'https://github.com/kadirahq/meteor-dochead.git'
 });
 
