@@ -31,6 +31,23 @@ Tinytest.addAsync('Server - addMeta', function(test, done) {
   DocHead.addMeta(metaInfo);
 });
 
+Tinytest.addAsync('Server - setMeta', function(test, done) {
+  const metaInfo = {name: "description", content: "hello content"};
+  const metaInfo2 = {name: "description", content: "NEW content"};
+  let handle = onSsrContext(function(html) {
+    const metaTag = `<meta name="${metaInfo.name}" content="${metaInfo.content}" dochead="1"/>`;
+    test.equal(html, metaTag);
+    let handle = onSsrContext( html => {
+      const metaTag2 = `<meta name="${metaInfo2.name}" content="${metaInfo2.content}" dochead="1"/>`;
+      test.equal(html, metaTag2);
+      handle.stop();
+      done();
+    });
+    DocHead.setMeta(metaInfo2);
+  });
+  DocHead.setMeta(metaInfo);
+});
+
 Tinytest.addAsync('Server - addLdJsonScript', function(test, done) {
   const snippet = {
     '@context': 'http://schema.org',
