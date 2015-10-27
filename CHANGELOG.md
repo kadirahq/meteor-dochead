@@ -1,5 +1,8 @@
 # Change Log
 
+### v1.3.0
+* Remove JQuery dependancy. See: [#17](https://github.com/kadirahq/meteor-dochead/pull/17)
+
 ### v1.2.2
 * Update browserify to 0.8.0
 
