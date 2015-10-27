@@ -13,9 +13,9 @@ Tinytest.add('Client - getTitle', function(test) {
 Tinytest.add('Client - addMeta', function(test) {
   const metaInfo = {name: "description", content: "awesome content"};
   DocHead.addMeta(metaInfo);
-  const metaDom = $('meta[name=description]');
-  test.equal(metaDom.attr('name'), metaInfo.name);
-  test.equal(metaDom.attr('content'), metaInfo.content);
+  const metaDom = document.querySelectorAll('meta[name=description]')[0];
+  test.equal(metaDom.getAttribute('name'), metaInfo.name);
+  test.equal(metaDom.getAttribute('content'), metaInfo.content);
 });
 
 Tinytest.add('Client - addLdJsonScript', function(test, done) {
@@ -26,8 +26,8 @@ Tinytest.add('Client - addLdJsonScript', function(test, done) {
     logo: 'http://www.example.com/images/logo.png'
   };
   DocHead.addLdJsonScript(snippet);
-  const tag = $('script[dochead="1"]');
-  const obj = JSON.parse(tag.html());
+  const tag = document.querySelectorAll('script[dochead="1"]')[0];
+  const obj = JSON.parse(tag.innerHTML);
   test.equal(obj, snippet);
 });
 
@@ -40,14 +40,15 @@ Tinytest.add('Client - remove exising meta tags', function(test) {
   metaInfo.content = "nice one";
   DocHead.addMeta(metaInfo);
 
-  const metaDom = $('meta[name=description]');
-  test.equal(metaDom.attr('name'), metaInfo.name);
-  test.equal(metaDom.attr('content'), metaInfo.content);
+  const metaDom = document.querySelectorAll('meta[name=description]');
+  const metaDomSingle = metaDom[0];
+  test.equal(metaDomSingle.getAttribute('name'), metaInfo.name);
+  test.equal(metaDomSingle.getAttribute('content'), metaInfo.content);
 
   // Only have the last one, even we add the same meta twice
   // DocHead differenciate meta by name
   // If not provided, it simply ignore them
-  test.equal(metaDom.get().length, 1);
+  test.equal(metaDom.length, 1);
 });
 
 Tinytest.addAsync('Client - loadScript', function(test, done) {

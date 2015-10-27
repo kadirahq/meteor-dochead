@@ -11,7 +11,7 @@ Npm.depends({
 
 var configure = function(api) {
   api.versionsFrom('1.2');
-  api.use(['jquery', 'es5-shim', 'ecmascript']);
+  api.use(['es5-shim', 'ecmascript']);
   api.use('kadira:flow-router-ssr@3.3.0', ['client', 'server'], {weak: true});
   api.use('cosmos:browserify@0.8.0', 'client');
 
