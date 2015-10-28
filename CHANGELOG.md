@@ -1,5 +1,8 @@
 # Change Log
 
+### v1.3.2
+* Use ES2015 for-of loops and it resolves the bug in Safari introduce in 1.3.0. [See More](https://github.com/kadirahq/meteor-dochead/commit/c0ce85d573e5dbf8cfa0ae02fa7f777743059276#commitcomment-14028289)
+
 ### v1.3.1
 * Fix issue of not working in Safari after the removal of jQuwery. See: [#https://github.com/kadirahq/meteor-dochead/issues/18]()
 
