@@ -1,5 +1,8 @@
 # Change Log
 
+### v1.3.1
+* Fix issue of not working in Safari after the removal of jQuwery. See: [#https://github.com/kadirahq/meteor-dochead/issues/18]()
+
 ### v1.3.0
 * Remove JQuery dependancy. See: [#17](https://github.com/kadirahq/meteor-dochead/pull/17)
 
