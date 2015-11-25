@@ -11,7 +11,7 @@ Npm.depends({
 
 var configure = function(api) {
   api.versionsFrom('1.2');
-  api.use(['es5-shim', 'ecmascript']);
+  api.use(['es5-shim', 'ecmascript', 'tracker']);
   api.use('kadira:flow-router-ssr@3.3.0', ['client', 'server'], {weak: true});
   api.use('cosmos:browserify@0.8.0', 'client');
 
@@ -28,7 +28,7 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
   api.addFiles('test/init.js', 'server');
   configure(api);
-  api.use(['react', 'tinytest', 'random']);
+  api.use(['react', 'tinytest', 'random', 'tracker', 'underscore']);
 
   api.addAssets('test/fakescript.js', 'client');
   api.addFiles('test/client.js', 'client');
