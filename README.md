@@ -31,6 +31,8 @@ DocHead.setTitle(title);
 
 Get the document title.
 
+> This API is reactive on the client. It only detect changes you made with `DocHead.setTitle()`.
+
 ~~~js
 var title = DocHead.getTitle();
 console.log("This is the document.title", title);
