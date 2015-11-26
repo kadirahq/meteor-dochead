@@ -10,6 +10,23 @@ Tinytest.add('Client - getTitle', function(test) {
   test.equal(DocHead.getTitle(), id);
 });
 
+Tinytest.addAsync('Client - getTitle reactivity', function(test, next) {
+  // Call the next function after we reactively received 3 title changes (+1
+  // for Tracker.autorun immediate invocation).
+  const n = 3;
+  const titleChanged = _.after(n + 1, next);
+  Tracker.autorun(() => {
+    DocHead.getTitle();
+    titleChanged();
+  });
+  _.times(n, () => {
+    const id = Random.id();
+    DocHead.setTitle(id);
+    Tracker.flush();
+  });
+});
+
+
 Tinytest.add('Client - addMeta', function(test) {
   const metaInfo = {name: "description", content: "awesome content"};
   DocHead.addMeta(metaInfo);
