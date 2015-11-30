@@ -56,7 +56,7 @@ var linkInfo = {rel: "icon", type: "image/png", href: "/icon.png"};
 DocHead.addLink(linkInfo);
 ~~~
 
-### DocHead.addLdJsonScript(jsonObj)
+#### DocHead.addLdJsonScript(jsonObj)
 
 Add a Script tag with type of `application/ld+json`.
 
@@ -79,6 +79,16 @@ DocHead.loadScript(gaScript, function() {
     ga('send', 'pageview');
 });
 ~~~
+
+#### DocHead.removeDocHeadAddedTags()
+
+When you add meta tags multiple times, older tags will be kept in the `document.head`. So, we need to clean them. For that, we can use this API.
+
+Practially, we can use this before a route change happen.
+
+> `DocHead.removeDocHeadAddedTags()` is already [added](https://github.com/kadirahq/meteor-dochead/blob/master/lib/flow_router.js) to FlowRouter SSR.
+
+**This API only functioning in the client. In the server, this does nothing.**
 
 ## Testing the package
 ```sh
