@@ -10,7 +10,7 @@ Npm.depends({
 });
 
 var configure = function(api) {
-  api.versionsFrom('1.2');
+  api.versionsFrom('1.3');
   api.use(['es5-shim', 'ecmascript', 'tracker']);
   api.use('kadira:flow-router-ssr@3.3.0', ['client', 'server'], {weak: true});
 
