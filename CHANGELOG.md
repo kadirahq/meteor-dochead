@@ -1,5 +1,9 @@
 # Change Log
 
+### v1.5.0
+
+* Add Meteor 1.3 support. See: [PR32](https://github.com/kadirahq/meteor-dochead/pull/32).
+
 ### v1.4.0
 * Make `DocHead.getTitle()` reactive. See: [#25](https://github.com/kadirahq/meteor-dochead/pull/25)
 
