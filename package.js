@@ -10,12 +10,11 @@ Npm.depends({
 });
 
 var configure = function(api) {
-  api.versionsFrom('1.2');
+  api.versionsFrom('1.3');
   api.use(['es5-shim', 'ecmascript', 'tracker']);
-  api.use('kadira:flow-router-ssr@3.3.0', ['client', 'server'], {weak: true});
-  api.use('cosmos:browserify@0.8.0', 'client');
+  api.use('kadira:flow-router-ssr@3.12.1', ['client', 'server'], {weak: true});
 
-  api.addFiles('package.browserify.js', 'client');
+  api.addFiles('main.js', 'client');
   api.addFiles('lib/both.js', ['client', 'server']);
   api.addFiles('lib/flow_router.js', ['client']);
 };
