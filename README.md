@@ -56,6 +56,24 @@ var linkInfo = {rel: "icon", type: "image/png", href: "/icon.png"};
 DocHead.addLink(linkInfo);
 ~~~
 
+#### DocHead.hasLink(metaInfo)
+
+Check if a Link tag with a matching `.href` attribute exists in the head.
+
+~~~js
+var linkInfo = {rel: "icon", type: "image/png", href: "/icon.png"};
+DocHead.hasLink(linkInfo);
+~~~
+
+#### DocHead.removeLink(metaInfo)
+
+Removes all link tags with a matching `.href` attribute.
+
+~~~js
+var linkInfo = {rel: "icon", type: "image/png", href: "/icon.png"};
+DocHead.removeLink(linkInfo);
+~~~
+
 #### DocHead.addLdJsonScript(jsonObj)
 
 Add a Script tag with type of `application/ld+json`.
