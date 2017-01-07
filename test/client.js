@@ -35,6 +35,18 @@ Tinytest.add('Client - addMeta', function(test) {
   test.equal(metaDom.getAttribute('content'), metaInfo.content);
 });
 
+Tinytest.add('Client - setMeta', function(test) {
+  const metaInfo = {name: "description", content: "awesome content"};
+  const metaInfoUpdated = {name: "description", content: "NEW content"};
+  DocHead.setMeta(metaInfo);
+  test.equal($('meta[name=description]').attr('name'), metaInfo.name);
+  test.equal($('meta[name=description]').attr('content'), metaInfo.content);
+  test.equal( $('meta[name=description]').length, 1 );
+  DocHead.setMeta(metaInfoUpdated);
+  test.equal($('meta[name=description]').attr('content'), metaInfoUpdated.content);
+  test.equal( $('meta[name=description]').length, 1 );
+});
+
 Tinytest.add('Client - addLdJsonScript', function(test, done) {
   const snippet = {
     '@context': 'http://schema.org',
